@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-TEMPDIR=../.temp
+TempDir=../.temp
 
 while true; do
 	read -r "choice?Does that sound correct? (y/n) "
@@ -12,7 +12,7 @@ while true; do
 		[n])
 			echo "Okay, lets try again"
 			echo "Removing old files"
-			rm -r $TEMPDIR/*
+			rm -r $TempDir/*
 			./askAgain.zsh
 			break ;
 		;;
