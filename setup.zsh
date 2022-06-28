@@ -58,7 +58,7 @@ function askAgain() {
 	read -r "Name?What would you like the project to be named?: "
 	read -r "Dir?Which directory would you like this to be in?: "
 	read -r "Type?Which type of project are you developing for? (1: C, 2: CPP or 3 for Generic): "
-	$checkType
+	checkType
 	# $canAccess		# <-- check dir access & if it exists
 }
 
@@ -72,7 +72,7 @@ function checkConfirmation() {
 			;;
 			[n])
 				echo "Okay, lets try again"
-				echo "Remvoing old files"
+				echo "Removing old files"
 				rm -r $TEMPDIR/*
 				askAgain
 				break ;
@@ -95,14 +95,22 @@ checkType
 
 echo "Okay, just to confirm: "
 echo -n "\tProject" $Name "will be created in the following directory" $Dir
-echo " and will be a" $Type "project type."
-
+echo -n " and will be a "
+case $Type in
+	[1]) echo -n "C"; ;;
+	[2]) echo -n "C++"; ;;
+	[3]) echo -n "generic"; ;;
+	*) echo "custom" $Type; ;;
+esac
+echo " project type"
 checkConfirmation
 
 echo "Creating and Copying files"
 
 echo "Current Directory Structure"
 echo $TEMPDIR/$Dir
+echo " | "
+echo -n " |- "
 ls $TEMPDIR/$Dir
 
 echo -n "One last thing, would you like to initialise this directory" $Dir "as a "
