@@ -25,8 +25,8 @@ function gitInit() {
 }
 
 function checkType() {
-	mkdir -p $Dir/$Name/sources
-	mkdir -p $Dir/$Name/headers
+	mkdir -p $TEMPDIR/$Dir/$Name/sources
+	mkdir -p $TEMPDIR/$Dir/$Name/headers
 	while true; do
 		case $Type in
 		[1])
@@ -102,7 +102,8 @@ checkConfirmation
 echo "Creating and Copying files"
 
 echo "Current Directory Structure"
-tree $Dir -L 2 -d
+echo $TEMPDIR/$Dir
+ls $TEMPDIR/$Dir
 
 echo -n "One last thing, would you like to initialise this directory" $Dir "as a "
 echo "git repository?"
