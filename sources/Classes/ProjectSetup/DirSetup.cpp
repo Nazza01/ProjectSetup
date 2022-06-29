@@ -6,21 +6,25 @@
 /*   By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:43:15 by Nathanael         #+#    #+#             */
-/*   Updated: 2022/06/29 12:14:42 by Nathanael        ###   ########.fr       */
+/*   Updated: 2022/06/29 15:02:41 by Nathanael        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ProjectSetup.hpp"
 
-bool	DirSetup(void)
+bool	ProjectSetup::DirSetup(void)
 {
-	// Make Dir .temp
-	LogtoFile("Pre-Setup: Attempting to make .temp directory");
-	if (system("mkdir .temp"))
+	this->LogToFile("Pre-Setup: Attempting to make .temp directory");
+	if (system("mkdir -p .temp/"))
 	{
-		LogtoFile("Pre-Setup: Directory .temp successfully made");
-		return (true);
+		this->LogToFile("Pre-Setup: Directory .temp successfully made");
+		this->LogToFile("Pre-Setup: DirSetup() return true");
+		return true;
 	}
 	else
-		return (false);
+	{
+		this->LogToFile("Pre-Setup: Directory .temp was unsuccessful");
+		this->LogToFile("Pre-Setup: DirSetup() return false");
+		return false;
+	}
 }

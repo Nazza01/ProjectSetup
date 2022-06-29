@@ -6,7 +6,7 @@
 /*   By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:34:40 by Nathanael         #+#    #+#             */
-/*   Updated: 2022/06/29 12:09:54 by Nathanael        ###   ########.fr       */
+/*   Updated: 2022/06/29 14:48:29 by Nathanael        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,28 @@
 
 int	main(void)
 {
-	std::cout << "PreSetup" << std::endl;
-	std::cout << "Setting up temporary directory" << std::endl;
-	if (DirSetup() == false)
-		std::cout << "Temporary directory not setup" << std::endl;
-	else if (DirSetup() == true)
+	ProjectSetup	project;
+
+	project.LogToFile("Pre-Setup: Setting up temporary directory");
+	if (project.DirSetup() == false)
+		project.LogToFile("Pre-Setup: Temp Directory Setup Failed");
+	else if (project.DirSetup() == true)
 	{
-		if (InitSetup() == false)
-			std::cout << "Initial setup failed" << std::endl;
-		else if (InitSetup() == true)
-		{
-			std::cout << "Initial setup complete" << std::endl;
-			std::cout << "All done, happy coding!" << std::endl;
-		}
-		else
-			std::cout << "InitSetup didn't return true or false." << std::endl;
-			return 1;
+		project.LogToFile("Dirsetup == true");
+	// 	if (project.InitSetup() == false)
+	// 		project.LogToFile("InitSetup == false");
+	// 	else if (project.InitSetup() == true)
+	// 	{
+	// 		project.LogToFile("InitSetup() == true");
+	// 		std::cout << "All done, happy coding!" << std::endl;
+	// 	}
+	// 	else
+	// 	{
+	// 		project.LogToFile("InitSetup() didn't return true or false");
+	// 		return 1;
+	// 	}
 	}
 	else
-		LogtoFile("Error: DirSetup() not working");
+		project.LogToFile("Error: DirSetup() not working");
 	return 0;
 }

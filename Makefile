@@ -6,7 +6,7 @@
 #    By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 20:23:35 by Nathanael         #+#    #+#              #
-#    Updated: 2022/06/29 11:36:53 by Nathanael        ###   ########.fr        #
+#    Updated: 2022/06/29 15:11:05 by Nathanael        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,9 @@ NAME 		=	ProjectSetup
 HEADERS_DIR	=	./headers
 OBJECTS_DIR	=	./objects
 SOURCES_DIR	=	./sources
+BUILD_DIR	=	./build
+
+LOGS		=	$(shell find . -name 'SetupLog_**.txt')
 
 CLEAN		:=	$(BUILD_DIR)
 FILE_CLEAN	:=	$(OBJECTS_DIR)
@@ -55,9 +58,10 @@ CP			=	cp
 .DELETE_ON_ERROR: all ca clean fclean r re
 .PHONY: all ca clean fclean r re
 
-all: $(NAME)
+all: $(BUILD_DIR)/$(NAME)
 
-$(NAME): $(FINAL_OBJECTS)
+$(BUILD_DIR)/$(NAME): $(FINAL_OBJECTS)
+	@$(MKDIR) $(BUILD_DIR)
 	@$(CXX) $(FINAL_OBJECTS) $(LDFLAGS) -o $@
 	@clear
 	@printf "Program %s built successfully\n" $@
@@ -68,7 +72,7 @@ $(OBJECTS_DIR)/%.o : $(SOURCES_DIR)/%.cpp
 	@clear
 	@printf "Linked %s to: %s\n" $< $@
 
-ca: clean fclean
+ca: clean fclean cl
 	@clear
 	@printf "Cleaned %s\n" $(FILE_CLEAN) $(CLEAN)
 
@@ -82,8 +86,13 @@ fclean:
 	@clear
 	@printf "Cleaned: %s\n" $(FILE_CLEAN)
 
+cl:
+	@$(RM) $(LOGS)
+	@clear
+	@printf "Cleaned %s\n" $(LOGS)
+
 r:	re
 
-re: fclean clean all
+re: cl fclean clean all
 	@clear
 	@printf "Cleaned and remade all files!\n"

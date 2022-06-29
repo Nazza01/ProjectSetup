@@ -1,24 +1,3 @@
-#!/bin/bash
-
-TempDir=.temp
-
-echo -n "Pre-Setup: "
-echo -n "Checking additional script permissions"
-for files in scripts/*; do
-	if [ -x "$files" ]; then
-		echo -n "."
-	else
-		chmod +x "$files"
-		echo -n "..."
-	fi
-done
-echo "done"
-
-echo -n "Pre-Setup: "
-echo -n "Setting up temporary directory"
-echo -n "..."
-mkdir -p .temp/
-echo "done"
 
 printf "\nWelcome to project setup!\n"
 printf "I'm going to need a few details before everything is setup\n"

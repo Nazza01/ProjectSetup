@@ -2,4 +2,7 @@
 .temp/
 
 objects/
-ProjectSetup
+build/
+
+sources_temp/
+SetupLog_*.txt
