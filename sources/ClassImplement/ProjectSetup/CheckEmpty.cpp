@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   InitSetup.cpp                                      :+:      :+:    :+:   */
+/*   CheckEmpty.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/29 11:44:39 by Nathanael         #+#    #+#             */
-/*   Updated: 2022/06/29 15:35:23 by Nathanael        ###   ########.fr       */
+/*   Created: 2022/06/29 23:02:44 by Nathanael         #+#    #+#             */
+/*   Updated: 2022/06/29 23:05:12 by Nathanael        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ProjectSetup.hpp"
 
-bool	ProjectSetup::InitSetup(void)
+bool	ProjectSetup::CheckEmpty(std::string str)
 {
-	std::cout << "Welcome to project setup\nI'm going to need a few details "
-	<< "before everything is setup" << std::endl;
-	if (this->AskDetails() == false)
+	if (str != "" || str != "\0")
 	{
-		this->LogToFile("askDetails() == false");
-		return false;
-	}
-	else if (this->AskDetails() == true)
-	{
-		this->LogToFile("askDetails() == true");
-		return true;
+		this->LogToFile("checkEmpty(str): not empty string");
+		return EXIT_SUCCESS;
 	}
 	else
 	{
-		this->LogToFile("askDetails() function not true or false");
-		return true;
+		this->LogToFile("checkEmpty(str): string is empty");
+		return EXIT_FAILURE;
 	}
 }

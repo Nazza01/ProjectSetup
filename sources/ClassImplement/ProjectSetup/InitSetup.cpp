@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Constructor.cpp                                    :+:      :+:    :+:   */
+/*   InitSetup.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/29 15:49:29 by Nathanael         #+#    #+#             */
-/*   Updated: 2022/06/29 15:50:42 by Nathanael        ###   ########.fr       */
+/*   Created: 2022/06/29 11:44:39 by Nathanael         #+#    #+#             */
+/*   Updated: 2022/06/29 23:05:10 by Nathanael        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ProjectSetup.hpp"
 
-ProjectSetup::ProjectSetup(void)
+void	ProjectSetup::InitSetup(void)
 {
-	this->LogToFile("------------------ PROJECT_SETUP ------------------");
-	this->LogToFile("ProjectSetup::ProjectSetup(void): Constructor called");
+	std::cout << "Welcome to project setup\nI'm going to need a few details "
+	<< "before everything is setup" << std::endl;
+	return (this->AskDetails());
 }

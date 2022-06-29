@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   PreSetup.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/29 11:34:40 by Nathanael         #+#    #+#             */
-/*   Updated: 2022/06/29 23:00:47 by Nathanael        ###   ########.fr       */
+/*   Created: 2022/06/29 11:43:15 by Nathanael         #+#    #+#             */
+/*   Updated: 2022/06/29 23:00:18 by Nathanael        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ProjectSetup.hpp"
 
-int	main(void)
+bool	ProjectSetup::PreSetup(void)
 {
-	ProjectSetup	project;
+	int var;
+	this->LogToFile("Pre-Setup: Setting up temporary directory");
+	this->LogToFile("Pre-Setup: Attempting to make .temp directory");
 
-	project.Flag = project.PreSetup();
+	var = mkdir(".temp", 0666);
 
-	if (project.Flag == EXIT_SUCCESS)
-	{
-		std::cout << "Temp Dir was created" << std::endl;
-	}
-	else if (project.Flag == EXIT_FAILURE)
-	{
-		std::cout << "Temp Dir failed to be created" << std::endl;
-	}
-	else
-	{
-		std::cout << "Temp dir was none of: failed or successfull, we will never know" << std::endl;
-	}
-	return 0;
+	std::cout << "mkdir = " << var << std::cout;
+	return EXIT_SUCCESS;
 }
