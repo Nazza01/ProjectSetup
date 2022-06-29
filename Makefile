@@ -6,7 +6,7 @@
 #    By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 20:23:35 by Nathanael         #+#    #+#              #
-#    Updated: 2022/06/29 21:05:59 by Nathanael        ###   ########.fr        #
+#    Updated: 2022/06/29 23:25:05 by Nathanael        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ FINAL_OBJECTS:=	$(CXX_OBJECTS)
 #								COMPILER/FLAGS								   #
 ################################################################################
 CXX			=	g++
-CXX_STAND	=	-std=c++11
+CXX_STAND	=	-std=c++17
 
 CDEBUG		=	-g
 

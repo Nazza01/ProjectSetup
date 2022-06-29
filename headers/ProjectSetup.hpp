@@ -6,7 +6,7 @@
 /*   By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:34:58 by Nathanael         #+#    #+#             */
-/*   Updated: 2022/06/29 23:06:35 by Nathanael        ###   ########.fr       */
+/*   Updated: 2022/06/29 23:55:15 by Nathanael        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,33 +20,37 @@
 #include <fstream>
 #include <sys/stat.h>
 #include <vector>
+#include <filesystem>		//C++17 paths
 
 class ProjectSetup
 {
 public:
 	bool						Flag;
-	int							Type;
+	std::string					Type;
 	std::string					Name;
 	std::string					Directory;
 	static const std::string	Type_Headings[5];
 	static const std::string	Type_FileList[5];
 	static const std::string	setupFiles[8];
-	
-	//	LogToFile.cpp
-	void						LogToFile(std::string msg);
 
 	//	AskForDetails.cpp
-	bool						AskType(void);
-	bool						AskDir(void);
-	bool						AskName(void);
-	bool						AskDetails(void);
+	void	AskType(void);
+	bool	AskDir(void);
+	bool	AskName(void);
+	bool	AskDetails(void);
 	
-	//	CheckEmpty.cpp
-	bool						CheckEmpty(std::string str);
+	//	LogToFile.cpp
+	void	LogToFile(std::string msg);
+	void	LogToFile(std::string msg, std::string optMsg);
+
+	//	InitSetup.cpp
+	void	InitSetup(void);
+
+	//	PreSetup.cpp
+	bool	PreSetup(void);
 	
-	//	
-	bool						PreSetup(void);
-	void						InitSetup(void);
+	// 	Utils.cpp
+	bool	intRangeCheck(int low, int high, std::string x);
 	
 	//	Default.cpp
 	ProjectSetup();
@@ -100,5 +104,6 @@ Todo:	Still neeed to create these files and implement them in the Type_Headings 
 	"main-class.cpp",								//	C++ Main				[C++ - with class includes]
 	*/
 };
-	
+
+
 #endif

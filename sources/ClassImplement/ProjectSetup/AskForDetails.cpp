@@ -6,27 +6,30 @@
 /*   By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:49:41 by Nathanael         #+#    #+#             */
-/*   Updated: 2022/06/29 23:03:54 by Nathanael        ###   ########.fr       */
+/*   Updated: 2022/06/29 23:57:04 by Nathanael        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ProjectSetup.hpp"
 
-bool	ProjectSetup::AskType(void)
+void	ProjectSetup::AskType(void)
 {
 	std::cout << "What project type would you like this project to be?" << std::endl;
 	for (int i = 0; i < 5; i++)
 		std::cout << this->Type_Headings[i] << "\t - \t" << this->Type_FileList[i] << std::endl;
-	std::cin >> this->Type;
-	this->LogToFile("askType(): project type has been set to " + std::to_string(this->Type));
-	return (false);
+	while (intRangeCheck(0, 5, this->Type) != true)
+		std::getline(std::cin, this->Type);
+	this->LogToFile("askType(): project type has been set to ", this->Type);
 }
 
-bool	ProjectSetup::AskDir(void)
+void	ProjectSetup::AskDir(void)
 {
-	std::cout << "What directory would you like this folder to be in? ";
-	std::cin >> this->Directory;
-	return (this->CheckEmpty(this->Directory));
+	std::cout << "What directory would you like this folder to be in?" << std::endl;
+	while (!(this->Directory.empty()))
+	{
+		// todo: See if there is a better way of implementing this using c++17 or 11 features
+		std::getline(std::cin, this->Directory);
+	}
 }
 
 bool	ProjectSetup::AskName(void)
@@ -36,7 +39,7 @@ bool	ProjectSetup::AskName(void)
 	return (this->CheckEmpty(this->Name));
 }
 
-bool	ProjectSetup::AskDetails(void)
+bool	ProjectSetup::AskAgain(void)
 {
 	if (this->AskName() == EXIT_SUCCESS && this->AskDir() == EXIT_SUCCESS && this->AskType() == EXIT_SUCCESS)
 		return EXIT_SUCCESS;

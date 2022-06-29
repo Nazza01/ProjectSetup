@@ -6,7 +6,7 @@
 /*   By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:43:15 by Nathanael         #+#    #+#             */
-/*   Updated: 2022/06/29 23:00:18 by Nathanael        ###   ########.fr       */
+/*   Updated: 2022/06/29 23:27:48 by Nathanael        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@ bool	ProjectSetup::PreSetup(void)
 
 	var = mkdir(".temp", 0666);
 
-	std::cout << "mkdir = " << var << std::cout;
+	std::cout << "mkdir = " << var << std::endl;
 	return EXIT_SUCCESS;
 }

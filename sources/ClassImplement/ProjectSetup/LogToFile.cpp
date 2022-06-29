@@ -6,7 +6,7 @@
 /*   By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:50:55 by Nathanael         #+#    #+#             */
-/*   Updated: 2022/06/29 15:09:02 by Nathanael        ###   ########.fr       */
+/*   Updated: 2022/06/29 23:14:44 by Nathanael        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,14 @@ void	ProjectSetup::LogToFile(std::string msg)
 	std::string		now = getCurrentDateTime("now");
 	std::ofstream	outfile(filePath.c_str(), std::ios_base::out | std::ios_base::app);
 	outfile << now << '\t' << msg << '\n';
+	outfile.close();
+}
+
+void	ProjectSetup::LogToFile(std::string msg, std::string optMsg)
+{
+	std::string		filePath = "SetupLog_"+getCurrentDateTime("date")+".txt";
+	std::string		now = getCurrentDateTime("now");
+	std::ofstream	outfile(filePath.c_str(), std::ios_base::out | std::ios_base::app);
+	outfile << now << '\t' << msg << ' ' << optMsg << '\n';
 	outfile.close();
 }

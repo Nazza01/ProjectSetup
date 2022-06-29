@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   InitSetup.cpp                                      :+:      :+:    :+:   */
+/*   Utils.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/29 11:44:39 by Nathanael         #+#    #+#             */
-/*   Updated: 2022/06/29 23:05:10 by Nathanael        ###   ########.fr       */
+/*   Created: 2022/06/29 23:47:02 by Nathanael         #+#    #+#             */
+/*   Updated: 2022/06/29 23:53:00 by Nathanael        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ProjectSetup.hpp"
 
-void	ProjectSetup::InitSetup(void)
+bool	ProjectSetup::intRangeCheck(int low, int high, std::string x)
 {
-	std::cout << "Welcome to project setup\nI'm going to need a few details "
-	<< "before everything is setup" << std::endl;
-	return (this->AskDetails());
+	return (low <= stoi(x) && stoi(x) <= high);
 }
