@@ -6,7 +6,7 @@
 /*   By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:34:58 by Nathanael         #+#    #+#             */
-/*   Updated: 2022/06/29 15:46:06 by Nathanael        ###   ########.fr       */
+/*   Updated: 2022/06/29 16:38:40 by Nathanael        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 class ProjectSetup
 {
 public:
+	bool			flag;
 	int				Type;
 	std::string		Name;
 	std::string		Directory;
@@ -51,9 +52,9 @@ public:
 		"blank.hpp",
 	};
 	void	LogToFile(std::string msg);
-	bool	DirSetup(void);
+	bool	PreSetup(void);
 	bool	InitSetup(void);
-	
+
 	//	askForDetails.cpp
 	bool	CheckEmpty(std::string str);
 	bool	AskType(void);
