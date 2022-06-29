@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Constructor.cpp                                    :+:      :+:    :+:   */
+/*   Default.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/29 15:49:29 by Nathanael         #+#    #+#             */
-/*   Updated: 2022/06/29 21:37:25 by Nathanael        ###   ########.fr       */
+/*   Created: 2022/06/29 23:06:53 by Nathanael         #+#    #+#             */
+/*   Updated: 2022/06/29 23:07:02 by Nathanael        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,4 +16,12 @@ ProjectSetup::ProjectSetup(void)
 {
 	this->LogToFile("------------------ PROJECT_SETUP ------------------");
 	this->LogToFile("ProjectSetup::ProjectSetup(void): Constructor called");
+}
+
+ProjectSetup::~ProjectSetup(void)
+{
+	this->LogToFile("ProjectSetup::ProjectSetup(void): Destructor called");
+	// this->LogToFile("ProjectSetup::ProjectSetup(void): Removing .temp/ directory");
+	// system("rmdir .temp/");
+	// system("rm SetupLog_*.txt");
 }

@@ -6,7 +6,7 @@
 /*   By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:34:58 by Nathanael         #+#    #+#             */
-/*   Updated: 2022/06/29 23:04:39 by Nathanael        ###   ########.fr       */
+/*   Updated: 2022/06/29 23:06:35 by Nathanael        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,19 @@ public:
 	void						LogToFile(std::string msg);
 
 	//	AskForDetails.cpp
-	bool						CheckEmpty(std::string str);
-	bool						AskDetails(void);
-	bool						AskName(void);
-	bool						AskDir(void);
 	bool						AskType(void);
-
+	bool						AskDir(void);
+	bool						AskName(void);
+	bool						AskDetails(void);
+	
+	//	CheckEmpty.cpp
+	bool						CheckEmpty(std::string str);
+	
 	//	
 	bool						PreSetup(void);
 	void						InitSetup(void);
-
+	
+	//	Default.cpp
 	ProjectSetup();
 	~ProjectSetup();
 };
