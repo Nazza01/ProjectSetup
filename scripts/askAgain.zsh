@@ -8,9 +8,8 @@ while true; do
 		exit
 		exit
 	else
-		./checkDir.zsh
-		./checkType.zsh
-		./checkConfirmation.zsh
+		scripts/checkDir.zsh
+		scripts/checkType.zsh
+		scripts/checkConfirmation.zsh
 	fi
 done
-

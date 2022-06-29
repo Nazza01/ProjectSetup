@@ -1,14 +1,14 @@
-#!/bin/zsh
+#!/bin/bash
 
 TempDir=.temp
 
 echo -n "Pre-Setup: "
 echo -n "Checking additional script permissions"
 for files in scripts/*; do
-	if [ -x $files ]; then
+	if [ -x "$files" ]; then
 		echo -n "."
 	else
-		chmod +x $files
+		chmod +x "$files"
 		echo -n "..."
 	fi
 done
@@ -20,13 +20,13 @@ echo -n "..."
 mkdir -p .temp/
 echo "done"
 
-echo "\nWelcome to project setup!\n"
-echo "I'm going to need a few details before everything is setup\n"
+printf "\nWelcome to project setup!\n"
+printf "I'm going to need a few details before everything is setup\n"
 ./scripts/askAgain.zsh
 
-echo "Okay, just to confirm: "
-echo -n "\tProject" $Name "will be created in the following directory" $Dir
-echo -n " and will be a "
+printf "Okay, just to confirm:\n"
+printf "\tProject %s" "$Name" "will be created in the following directory %s" "$Dir" 
+printf " and will be a "
 case $Type in
 	[1]) echo -n "C"; ;;
 	[2]) echo -n "C (with headers)"; ;;
