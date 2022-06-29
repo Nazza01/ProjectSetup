@@ -6,7 +6,7 @@
 /*   By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:34:58 by Nathanael         #+#    #+#             */
-/*   Updated: 2022/06/29 14:50:13 by Nathanael        ###   ########.fr       */
+/*   Updated: 2022/06/29 15:46:06 by Nathanael        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <string.h>
 #include <cstdio>
 #include <fstream>
+#include <sys/stat.h>
 
 class ProjectSetup
 {
@@ -50,9 +51,16 @@ public:
 		"blank.hpp",
 	};
 	void	LogToFile(std::string msg);
-	bool	DirSetup();
+	bool	DirSetup(void);
 	bool	InitSetup(void);
+	
+	//	askForDetails.cpp
+	bool	CheckEmpty(std::string str);
+	bool	AskType(void);
+	bool	AskDir(void);
+	bool	AskName(void);
 	bool	AskDetails(void);
+
 	ProjectSetup();
 	~ProjectSetup();
 };

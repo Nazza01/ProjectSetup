@@ -6,59 +6,59 @@
 /*   By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:49:41 by Nathanael         #+#    #+#             */
-/*   Updated: 2022/06/29 14:22:58 by Nathanael        ###   ########.fr       */
+/*   Updated: 2022/06/29 15:34:13 by Nathanael        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ProjectSetup.hpp"
 
-static bool	checkEmpty(std::string str)
+bool	ProjectSetup::CheckEmpty(std::string str)
 {
 	if (str != "" || str != "\0")
 	{
-		logtoFile("checkEmpty(str): not empty string");
+		this->LogToFile("checkEmpty(str): not empty string");
 		return false;
 	}
 	else
 	{
-		logtoFile("checkEmpty(str): string is empty");
+		this->LogToFile("checkEmpty(str): string is empty");
 		return true;
 	}
 }
 
-static bool	askType(void)
+bool	ProjectSetup::AskType(void)
 {
 	std::cout << "What project type would you like this project to be?" << std::endl;
 	for (int i = 0; i < 5; i++)
-		std::cout << proj.askType[i] << "\t - \t" << proj.askFiles[i] << std::endl;
-	std::cin >> proj.Type;
-	logtoFile("askType(): projec type has been set to " + proj.Type);
+		std::cout << this->askType[i] << "\t - \t" << this->askFiles[i] << std::endl;
+	std::cin >> this->Type;
+	this->LogToFile("askType(): projec type has been set to " + this->Type);
 	return (false);
 }
 
-static bool	askDir(void)
+bool	ProjectSetup::AskDir(void)
 {
 	std::cout << "What directory would you like this folder to be in? ";
-	std::cin >> proj.Directory;
-	return (checkEmpty(proj.Directory));
+	std::cin >> this->Directory;
+	return (this->CheckEmpty(this->Directory));
 }
 
-static bool	askName(void)
+bool	ProjectSetup::AskName(void)
 {
 	std::cout << "What would you like the name of the project to be? ";
-	std::cin >> proj.Name;
-	return (checkEmpty(proj.Name));
+	std::cin >> this->Name;
+	return (this->CheckEmpty(this->Name));
 }
 
-bool	askDetails(void)
+bool	ProjectSetup::AskDetails(void)
 {
-	if (askName() == false || askDir() == false || askType() == false)
+	if (this->AskName() == false || this->AskDir() == false || this->AskType() == false)
 		return false;
-	else if (askName() == true || askDir() == true || askType() == true)
+	else if (this->AskName() == true || this->AskDir() == true || this->AskType() == true)
 		return true;
 	else
 	{
-		logtoFile("askName(), askDir() or askType() is neither true or false");
+		this->LogToFile("askName(), askDir() or askType() is neither true or false");
 		return true;
 	}
 }

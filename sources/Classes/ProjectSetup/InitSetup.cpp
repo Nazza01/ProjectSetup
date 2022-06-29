@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   DirSetup.cpp                                       :+:      :+:    :+:   */
+/*   InitSetup.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/29 11:43:15 by Nathanael         #+#    #+#             */
-/*   Updated: 2022/06/29 15:53:19 by Nathanael        ###   ########.fr       */
+/*   Created: 2022/06/29 11:44:39 by Nathanael         #+#    #+#             */
+/*   Updated: 2022/06/29 15:35:23 by Nathanael        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ProjectSetup.hpp"
 
-bool	ProjectSetup::DirSetup(void)
+bool	ProjectSetup::InitSetup(void)
 {
-	int	check = 0;
-
-	this->LogToFile("Pre-Setup: Attempting to make .temp directory");
-	check = mkdir(".temp", 07770);
-	if (check)
+	std::cout << "Welcome to project setup\nI'm going to need a few details "
+	<< "before everything is setup" << std::endl;
+	if (this->AskDetails() == false)
 	{
-		this->LogToFile("Pre-Setup: .temp directory successfully created");
+		this->LogToFile("askDetails() == false");
 		return false;
+	}
+	else if (this->AskDetails() == true)
+	{
+		this->LogToFile("askDetails() == true");
+		return true;
 	}
 	else
 	{
-		this->LogToFile("Pre-Setup: .temp directory unable to be created");
+		this->LogToFile("askDetails() function not true or false");
 		return true;
 	}
 }

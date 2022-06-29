@@ -1,34 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   InitSetup.cpp                                      :+:      :+:    :+:   */
+/*   Destructor.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/29 11:44:39 by Nathanael         #+#    #+#             */
-/*   Updated: 2022/06/29 14:23:01 by Nathanael        ###   ########.fr       */
+/*   Created: 2022/06/29 14:25:32 by Nathanael         #+#    #+#             */
+/*   Updated: 2022/06/29 15:50:33 by Nathanael        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ProjectSetup.hpp"
 
-bool	initSetup(void)
+ProjectSetup::~ProjectSetup(void)
 {
-	std::cout << "Welcome to project setup\nI'm going to need a few details "
-	<< "before everything is setup" << std::endl;
-	if (askDetails() == false)
-	{
-		logtoFile("askDetails() == false");
-		return false;
-	}
-	else if (askDetails() == true)
-	{
-		logtoFile("askDetails() == true");
-		return true;
-	}
-	else
-	{
-		logtoFile("askDetails() function not true or false");
-		return true;
-	}
+	this->LogToFile("ProjectSetup::ProjectSetup(void): Destructor called");
+	this->LogToFile("ProjectSetup::ProjectSetup(void): Removing .temp/ directory");
+	system("rmdir .temp/");
+	// system("rm SetupLog_*.txt");
 }
