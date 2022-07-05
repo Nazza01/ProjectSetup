@@ -1,42 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   askForDetails.cpp                                  :+:      :+:    :+:   */
+/*   AskForDetails.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:49:41 by Nathanael         #+#    #+#             */
-/*   Updated: 2022/06/29 23:57:04 by Nathanael        ###   ########.fr       */
+/*   Updated: 2022/07/05 10:48:36 by Nathanael        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ProjectSetup.hpp"
 
-void	ProjectSetup::AskType(void)
+bool	ProjectSetup::AskType(void)
 {
-	std::cout << "What project type would you like this project to be?" << std::endl;
+	cout << "What project type would you like this project to be?" << endl;
 	for (int i = 0; i < 5; i++)
-		std::cout << this->Type_Headings[i] << "\t - \t" << this->Type_FileList[i] << std::endl;
+		cout << this->Type_Headings[i] << "\t - \t" << this->Type_FileList[i] << endl;
 	while (intRangeCheck(0, 5, this->Type) != true)
-		std::getline(std::cin, this->Type);
+		getline(cin, this->Type);
 	this->LogToFile("askType(): project type has been set to ", this->Type);
+	return EXIT_SUCCESS;
 }
 
-void	ProjectSetup::AskDir(void)
+bool	ProjectSetup::AskDir(void)
 {
-	std::cout << "What directory would you like this folder to be in?" << std::endl;
+	cout << "What directory would you like this folder to be in?" << endl;
 	while (!(this->Directory.empty()))
 	{
 		// todo: See if there is a better way of implementing this using c++17 or 11 features
-		std::getline(std::cin, this->Directory);
+		getline(cin, this->Directory);
 	}
+	return EXIT_SUCCESS;
 }
 
 bool	ProjectSetup::AskName(void)
 {
-	std::cout << "What would you like the name of the project to be? ";
-	std::cin >> this->Name;
-	return (this->CheckEmpty(this->Name));
+	cout << "What would you like the name of the project to be? ";
+	cin >> this->Name;
+	while (!(this->Name.empty()))
+	{
+		// todo: See if there is a better way of implementing this using c++17 or 11 features
+		getline(cin, this->Name);
+	}
+	return EXIT_SUCCESS;
 }
 
 bool	ProjectSetup::AskAgain(void)

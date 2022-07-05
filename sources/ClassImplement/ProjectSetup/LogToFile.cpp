@@ -6,39 +6,39 @@
 /*   By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:50:55 by Nathanael         #+#    #+#             */
-/*   Updated: 2022/06/29 23:14:44 by Nathanael        ###   ########.fr       */
+/*   Updated: 2022/07/05 10:48:38 by Nathanael        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ProjectSetup.hpp"
 
-static std::string	getCurrentDateTime(std::string s)
+static string	getCurrentDateTime(string s)
 {
 	time_t		now = time(0);
-	struct	tm	tstruct;
+	struct	tm	tstruct = *localtime(&now);
 	char		buf[80];
-	tstruct = *localtime(&now);
+
 	if (s == "now")
 		strftime(buf, sizeof(buf), "%Y-%m-%d %X", &tstruct);
 	else if (s == "date")
         strftime(buf, sizeof(buf), "%Y-%m-%d", &tstruct);
-    return std::string(buf);
+    return string(buf);
 }
 
-void	ProjectSetup::LogToFile(std::string msg)
+void	ProjectSetup::LogToFile(string msg)
 {
-	std::string		filePath = "SetupLog_"+getCurrentDateTime("date")+".txt";
-	std::string		now = getCurrentDateTime("now");
-	std::ofstream	outfile(filePath.c_str(), std::ios_base::out | std::ios_base::app);
+	string		filePath = "SetupLog_"+getCurrentDateTime("date")+".txt";
+	string		now = getCurrentDateTime("now");
+	ofstream	outfile(filePath.c_str(), ios_base::out | ios_base::app);
 	outfile << now << '\t' << msg << '\n';
 	outfile.close();
 }
 
-void	ProjectSetup::LogToFile(std::string msg, std::string optMsg)
+void	ProjectSetup::LogToFile(string msg, string optMsg)
 {
-	std::string		filePath = "SetupLog_"+getCurrentDateTime("date")+".txt";
-	std::string		now = getCurrentDateTime("now");
-	std::ofstream	outfile(filePath.c_str(), std::ios_base::out | std::ios_base::app);
+	string		filePath = "SetupLog_"+getCurrentDateTime("date")+".txt";
+	string		now = getCurrentDateTime("now");
+	ofstream	outfile(filePath.c_str(), ios_base::out | ios_base::app);
 	outfile << now << '\t' << msg << ' ' << optMsg << '\n';
 	outfile.close();
 }
