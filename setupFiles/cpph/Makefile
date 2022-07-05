@@ -5,23 +5,21 @@
 #                                                     +:+ +:+         +:+      #
 #    By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/06/01 20:23:35 by Nathanael         #+#    #+#              #
-#    Updated: 2022/07/05 16:44:39 by Nathanael        ###   ########.fr        #
+#    Created: 2022/06/27 17:19:09 by Nathanael         #+#    #+#              #
+#    Updated: 2022/06/27 17:19:10 by Nathanael        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #	Make changes here
-NAME 		=	ProjectSetup
+NAME 		=	a.out
 
 ################################################################################
 #								DIRECTORIES/FILES							   #
 ################################################################################
+BUILD_DIR	=	./build
 HEADERS_DIR	=	./headers
 OBJECTS_DIR	=	./objects
 SOURCES_DIR	=	./sources
-BUILD_DIR	=	./build
-
-LOGS		=	$(shell find . -name 'SetupLog_**.txt')
 
 CLEAN		:=	$(BUILD_DIR)
 FILE_CLEAN	:=	$(OBJECTS_DIR)
@@ -35,8 +33,8 @@ FINAL_OBJECTS:=	$(CXX_OBJECTS)
 ################################################################################
 #								COMPILER/FLAGS								   #
 ################################################################################
-CXX			=	g++
-CXX_STAND	=	-std=c++17
+CXX			=	c++
+CXX_STAND	=	-std=c++98
 
 CDEBUG		=	-g
 
@@ -56,6 +54,7 @@ CP			=	cp
 #								COMMANDS									   #
 ################################################################################
 .DELETE_ON_ERROR: all ca clean fclean r re
+
 .PHONY: all ca clean fclean r re
 
 all: $(BUILD_DIR)/$(NAME)
@@ -72,7 +71,7 @@ $(OBJECTS_DIR)/%.o : $(SOURCES_DIR)/%.cpp
 	@clear
 	@printf "Linked %s to: %s\n" $< $@
 
-ca: clean fclean cl
+ca: clean fclean
 	@clear
 	@printf "Cleaned %s\n" $(FILE_CLEAN) $(CLEAN)
 
@@ -86,13 +85,8 @@ fclean:
 	@clear
 	@printf "Cleaned: %s\n" $(FILE_CLEAN)
 
-cl:
-	@$(RM) $(LOGS)
-	@clear
-	@printf "Cleaned %s\n" $(LOGS)
-
 r:	re
 
-re: cl fclean clean all
+re: fclean clean all
 	@clear
 	@printf "Cleaned and remade all files!\n"

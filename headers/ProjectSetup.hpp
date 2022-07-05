@@ -6,7 +6,7 @@
 /*   By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:34:58 by Nathanael         #+#    #+#             */
-/*   Updated: 2022/07/05 15:12:21 by Nathanael        ###   ########.fr       */
+/*   Updated: 2022/07/05 16:43:40 by Nathanael        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,21 @@
 
 const int	m_Type_Headings	= 	5;
 const int	m_Type_FileList	=	m_Type_Headings;
-const int	m_SetupFiles	=	8;
-
-#define	MAX_TYPE_HEADINGS	5;
-#define	MAX_TYPE_FILE_LIST	5;
-#define	MAX_SETUP_FILES	8;
 
 #include <stdio.h>
 #include <string.h>
 #include <cstdio>
-#include <fstream>
 #include <sys/stat.h>
 #include <iostream>
 #include <array>
+#include <fstream>
+#include <cstdlib>
+
+#include <filesystem>
+// namespace fs = std::filesystem;		// May not work, if so, comment the above namespace out and uncomment this one
+
+#include <experimental/filesystem>
+namespace fs = std::experimental::filesystem;
 
 using	std::cout;
 using	std::cin;
@@ -35,9 +37,12 @@ using	std::endl;
 using	std::string;
 using	std::ios_base;
 using	std::getline;
+using	std::ifstream;
 using	std::ofstream;
 using	std::array;
+using	std::ios;
 
+ 
 class ProjectSetup
 {
 public:
@@ -47,7 +52,6 @@ public:
 	string						Directory;
 	static const char* const 	Type_Headings[m_Type_Headings];
 	static const char* const 	Type_FileList[m_Type_FileList];
-	static const char* const	SetupFiles[m_SetupFiles];
 	int							type_iter;
 
 	//	AskForDetails.cpp
@@ -56,6 +60,10 @@ public:
 	bool	AskName(void);
 	bool	AskAgain(void);
 	
+	//	CopyFiles.cpp
+	void	CP(std::string SRC, std::string DST);
+	bool	CopyFiles(void);
+
 	//	Default.cpp
 	ProjectSetup();
 	~ProjectSetup();
@@ -72,8 +80,5 @@ public:
 
 	// 	Utils.cpp
 	bool	intRangeCheck(int low, int high, string x);
-	
 };
-
-
 #endif

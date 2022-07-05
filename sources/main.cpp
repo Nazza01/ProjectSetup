@@ -6,7 +6,7 @@
 /*   By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:34:40 by Nathanael         #+#    #+#             */
-/*   Updated: 2022/07/05 14:59:35 by Nathanael        ###   ########.fr       */
+/*   Updated: 2022/07/05 15:42:52 by Nathanael        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,15 @@ int	main(void)
 {
 	ProjectSetup	project;
 
-	if (project.PreSetup() == EXIT_FAILURE)	//Pre Setup - temp dir
+	if (project.PreSetup() == EXIT_FAILURE)		//	Pre Setup - temp dir
 		project.LogToFile("Pre-Setup: .temp already exists, continuing");
-	if (project.AskType() == EXIT_FAILURE)		//Type of project to be made
+	if (project.AskType() == EXIT_FAILURE)		//	Type of project to be made
 		project.LogToFile("AskType: Failure");		
 	if (project.AskDir() == EXIT_FAILURE)		//	Directory to put the files into
 		project.LogToFile("AskDir: Failure");
 	if (project.AskName() == EXIT_FAILURE)		//	Ask the name of the project
 		project.LogToFile("AskName: Failure");
-	// while (project.confirmAsk() != EXIT_SUCCESS) if the function doesnt recieve abosolute confirmation, then keep asking for re-setup;
-	//	If that goes through, then great lets proceed
+	if (project.CopyFiles() == EXIT_FAILURE)	//	Make file structure using this->Dir
 	//	copy correct typed files into .temp dir with same dir structure (*.c goes into sources), *.h goes into headers and others where they need
 	//	Ask if git wants to be setup, if so set it up
 	// If not say okay cool good lets keep going
