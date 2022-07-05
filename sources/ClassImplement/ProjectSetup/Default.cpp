@@ -6,13 +6,16 @@
 /*   By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 23:06:53 by Nathanael         #+#    #+#             */
-/*   Updated: 2022/07/05 13:54:00 by Nathanael        ###   ########.fr       */
+/*   Updated: 2022/07/05 15:13:59 by Nathanael        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ProjectSetup.hpp"
 
-const char* const ProjectSetup::Type_Headings[5] = 
+/**
+ * update the global variable in header file: m_Type_Headings when anything is added here
+**/
+const char* const ProjectSetup::Type_Headings[m_Type_Headings] = 
 {
 	"C", 
 	"C .h",
@@ -21,7 +24,10 @@ const char* const ProjectSetup::Type_Headings[5] =
 	"Generic"
 };
 
-const char* const ProjectSetup::Type_FileList[5] =
+/**
+ * update the global variable in header file: m_Type_Headings when anything is added here
+**/
+const char* const ProjectSetup::Type_FileList[m_Type_FileList] =
 {
 	".gitignore, Makefile, main.c",					//	C
 	".gitignore, Makefile, main.c, blank.h",		//	C with Headers
@@ -32,8 +38,9 @@ const char* const ProjectSetup::Type_FileList[5] =
 
 /**	
  * a_copyFiles is used when copying the files from setupFiles/ to the final dir
+ * update the global variable in header file: m_SetupFiles when anything is added here
  * **/
-const char* const ProjectSetup::SetupFiles[8] = 
+const char* const ProjectSetup::SetupFiles[m_SetupFiles] = 
 {
 	".gitignore",									//	.gitignore				[C & C++ Versions]
 	"Makefile",										//	Makefile				[C & C++ Versions]
