@@ -6,7 +6,7 @@
 /*   By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:49:41 by Nathanael         #+#    #+#             */
-/*   Updated: 2022/07/05 10:48:36 by Nathanael        ###   ########.fr       */
+/*   Updated: 2022/07/05 14:02:09 by Nathanael        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,11 @@ bool	ProjectSetup::AskType(void)
 {
 	cout << "What project type would you like this project to be?" << endl;
 	for (int i = 0; i < 5; i++)
-		cout << this->Type_Headings[i] << "\t - \t" << this->Type_FileList[i] << endl;
+	{
+		cout << i << " " << Type_Headings[i] << "\t - \t" << Type_FileList[i] << endl;
+	}
+	cout << "Type[0-5]: ";
+	getline(cin, this->Type);
 	while (intRangeCheck(0, 5, this->Type) != true)
 		getline(cin, this->Type);
 	this->LogToFile("askType(): project type has been set to ", this->Type);
