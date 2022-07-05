@@ -6,7 +6,7 @@
 /*   By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:34:40 by Nathanael         #+#    #+#             */
-/*   Updated: 2022/07/05 11:02:43 by Nathanael        ###   ########.fr       */
+/*   Updated: 2022/07/05 11:08:18 by Nathanael        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	main(void)
 {
 	ProjectSetup	project;
-	"C", "C with Headers", "C++", "C++ with Headers", "Generic"
 	project.PreSetup();					//Pre Setup - temp dir
 	project.AskType();					//	Type of project to be made
 	project.AskDir();					//	Directory to put the files into
