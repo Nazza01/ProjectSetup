@@ -6,7 +6,7 @@
 /*   By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:49:41 by Nathanael         #+#    #+#             */
-/*   Updated: 2022/07/06 11:01:34 by Nathanael        ###   ########.fr       */
+/*   Updated: 2022/07/06 14:30:45 by Nathanael        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,15 +76,19 @@ bool	ProjectSetup::AskName(void)
 	return EXIT_SUCCESS;
 }
 
-bool	ProjectSetup::AskAgain(void)
+bool	ProjectSetup::AskSourceControl(void)
 {
-	if (this->AskName() == EXIT_SUCCESS && this->AskDir() == EXIT_SUCCESS && this->AskType() == EXIT_SUCCESS)
-		return EXIT_SUCCESS;
-	else if (this->AskName() == EXIT_FAILURE|| this->AskDir() == EXIT_FAILURE || this->AskType() == EXIT_FAILURE)
-		return EXIT_FAILURE;
-	else
+	cout << "Would you like to initialise a git repository for this project?" << endl;
+	cout << "[Y y] to confirm or [N n] to decline: ";
+	while (cin >> this->SourceAns && ((this->SourceAns.size() != 1 ) || \
+			(this->SourceAns[0] != 'Y' && this->SourceAns[0] != 'y' && \
+			this->SourceAns[0] != 'N' && this->SourceAns[0] != 'n')))
 	{
-		this->LogToFile("askName(), askDir() or askType() is neither true or false");
-		return EXIT_FAILURE;
+		cout << "[Y y] to confirm or [N n] to decline: ";
 	}
+	this->LogToFile("AskSourceControl: Git initalisation answer is", this->SourceAns);	
+	// Create files and use system to do git init
+	// If file creation worked, then exit success
+	// Otherwise failed
+	return EXIT_SUCCESS;
 }

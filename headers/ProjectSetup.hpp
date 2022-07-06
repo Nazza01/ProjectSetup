@@ -6,7 +6,7 @@
 /*   By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:34:58 by Nathanael         #+#    #+#             */
-/*   Updated: 2022/07/06 11:04:52 by Nathanael        ###   ########.fr       */
+/*   Updated: 2022/07/06 14:18:48 by Nathanael        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ using	std::ifstream;
 using	std::ofstream;
 using	std::array;
 using	std::ios;
-
  
 class ProjectSetup
 {
@@ -56,27 +55,31 @@ public:
 	static const char* const 	Type_Headings[m_Type_Headings];					//	Listing of the headings used
 	static const char* const 	Type_FileList[m_Type_FileList];					//	Listing of the files to be moved according to the headings
 	int							type_iter;										//	Iter selection of the file list
+	string						SourceAns;										//	The Answer (Y or N) if the git repo can be initialised
 
 	//	AskForDetails.cpp
 	bool	AskType(void);
 	bool	AskDir(void);
 	bool	AskName(void);
-	bool	AskAgain(void);
+	bool	AskSourceControl(void);
 	
 	//	CopyFiles.cpp
 	void	CP(std::string SRC, std::string DST);
 	bool	CopyFiles(void);
 
 	//	Default.cpp
-	ProjectSetup();
-	~ProjectSetup();
+	ProjectSetup(void);
+	~ProjectSetup(void);
 
-	//	PreSetup.cpp
-	bool	PreSetup(void);
+	//	FinalSetup.cpp
+	bool	FinalSetup(void);
 
 	//	LogToFile.cpp
 	void	LogToFile(string msg);
 	void	LogToFile(string msg, string optMsg);
+
+	//	PreSetup.cpp
+	bool	PreSetup(void);
 
 	//	InitSetup.cpp
 	void	InitSetup(void);
