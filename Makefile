@@ -6,13 +6,12 @@
 #    By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 20:23:35 by Nathanael         #+#    #+#              #
-#    Updated: 2022/07/06 09:24:24 by Nathanael        ###   ########.fr        #
+#    Updated: 2022/07/06 13:56:32 by Nathanael        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #	Make changes here
 NAME 		=	ProjectSetup
-
 
 ################################################################################
 #								PROGRESS BAR - DONT TOUCH					   #
@@ -74,46 +73,21 @@ CP			=	cp
 #								COMMANDS									   #
 ################################################################################
 .DELETE_ON_ERROR:
-.PHONY:
+.PHONY: all clean c
 
 all: $(NAME)
 
 $(NAME): $(FINAL_OBJECTS)
 	@$(CXX) $(FINAL_OBJECTS) $(LDFLAGS) -o $@
-	@sleep 0.1
-	@$(ECHO) $(NAME) Created
+	@$(ECHO) $(NAME) created
 
-$(OBJECTS_DIR)/%.o : $(SOURCES_DIR)/%.cpp
+$(OBJECTS_DIR)/%.o: $(SOURCES_DIR)/%.cpp
 	@$(MKDIR) '$(@D)'
 	@$(CXX) $(CFLAGS) -c $< -o $@
-	@sleep 0.1
 	@$(ECHO) Linking $< to $@
 
-ca: clean fclean cl
-	@sleep 0.1
-	@$(ECHO) $(CLEAN) $(FILE_CLEAN) $(LOGS) all cleaned
-
-clean:
-	@$(RM) $(CLEAN)
-	@sleep 0.1
-	@$(ECHO) $(CLEAN) cleaned
-
-fclean:
-	@$(RM) $(FILE_CLEAN)
-	@sleep 0.1
-	@$(ECHO) $(FILE_CLEAN) cleaned
-
-cl:
-	@$(RM) $(LOGS)
-	@sleep 0.1
-	@$(ECHO) $(LOGS) cleaned
-
-r:	re
-	@sleep 0.1
-	@$(ECHO) Cleaning and Re-Compiling Files
-
-re: ca all
-	@sleep 0.1
-	@$(ECHO) Cleaning and Re-Compiling Files
+c cl clean:
+	@$(RM) $(NAME) $(OBJECTS_DIR)
+	@$(ECHO) $(NAME), $(OBJECTS_DIR) cleaned
 
 endif
