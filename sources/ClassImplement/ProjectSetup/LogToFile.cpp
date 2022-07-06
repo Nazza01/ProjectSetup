@@ -6,7 +6,7 @@
 /*   By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:50:55 by Nathanael         #+#    #+#             */
-/*   Updated: 2022/07/05 10:48:38 by Nathanael        ###   ########.fr       */
+/*   Updated: 2022/07/06 09:52:46 by Nathanael        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static string	getCurrentDateTime(string s)
 
 void	ProjectSetup::LogToFile(string msg)
 {
-	string		filePath = "SetupLog_"+getCurrentDateTime("date")+".txt";
+	string		filePath = LOG_NAME + getCurrentDateTime("date")+".txt";
 	string		now = getCurrentDateTime("now");
 	ofstream	outfile(filePath.c_str(), ios_base::out | ios_base::app);
 	outfile << now << '\t' << msg << '\n';
@@ -36,7 +36,7 @@ void	ProjectSetup::LogToFile(string msg)
 
 void	ProjectSetup::LogToFile(string msg, string optMsg)
 {
-	string		filePath = "SetupLog_"+getCurrentDateTime("date")+".txt";
+	string		filePath = LOG_NAME + getCurrentDateTime("date")+".txt";
 	string		now = getCurrentDateTime("now");
 	ofstream	outfile(filePath.c_str(), ios_base::out | ios_base::app);
 	outfile << now << '\t' << msg << ' ' << optMsg << '\n';

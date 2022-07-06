@@ -6,12 +6,31 @@
 #    By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 20:23:35 by Nathanael         #+#    #+#              #
-#    Updated: 2022/07/05 16:44:39 by Nathanael        ###   ########.fr        #
+#    Updated: 2022/07/06 09:24:24 by Nathanael        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #	Make changes here
 NAME 		=	ProjectSetup
+
+
+################################################################################
+#								PROGRESS BAR - DONT TOUCH					   #
+################################################################################
+ifneq ($(words $(MAKECMDGOALS)),1)
+.DEFAULT_GOAL = all
+%:
+		@$(MAKE) $@ --no-print-directory -rRf $(firstword $(MAKEFILE_LIST))
+else
+ifndef ECHO
+T := $(shell $(MAKE) $(MAKECMDGOALS) --no-print-directory \
+	-nrRf $(firstword $(MAKEFILE_LIST)) \
+	ECHO="COUNTTHIS" | grep -c "COUNTTHIS")
+
+N := x
+C = $(words $N)$(eval N := x $N)
+ECHO = echo "`expr " [\`expr $C '*' 100 / $T\`" : '.*\(....\)$$'`%]"
+endif
 
 ################################################################################
 #								DIRECTORIES/FILES							   #
@@ -19,11 +38,10 @@ NAME 		=	ProjectSetup
 HEADERS_DIR	=	./headers
 OBJECTS_DIR	=	./objects
 SOURCES_DIR	=	./sources
-BUILD_DIR	=	./build
 
 LOGS		=	$(shell find . -name 'SetupLog_**.txt')
 
-CLEAN		:=	$(BUILD_DIR)
+CLEAN		:=	$(NAME)
 FILE_CLEAN	:=	$(OBJECTS_DIR)
 
 CXX_SOURCES	:=	$(shell find $(SOURCES_DIR) -name '*.cpp')
@@ -55,44 +73,47 @@ CP			=	cp
 ################################################################################
 #								COMMANDS									   #
 ################################################################################
-.DELETE_ON_ERROR: all ca clean fclean r re
-.PHONY: all ca clean fclean r re
+.DELETE_ON_ERROR:
+.PHONY:
 
-all: $(BUILD_DIR)/$(NAME)
+all: $(NAME)
 
-$(BUILD_DIR)/$(NAME): $(FINAL_OBJECTS)
-	@$(MKDIR) $(BUILD_DIR)
+$(NAME): $(FINAL_OBJECTS)
 	@$(CXX) $(FINAL_OBJECTS) $(LDFLAGS) -o $@
-	@clear
-	@printf "Program %s built successfully\n" $@
+	@sleep 0.1
+	@$(ECHO) $(NAME) Created
 
 $(OBJECTS_DIR)/%.o : $(SOURCES_DIR)/%.cpp
 	@$(MKDIR) '$(@D)'
 	@$(CXX) $(CFLAGS) -c $< -o $@
-	@clear
-	@printf "Linked %s to: %s\n" $< $@
+	@sleep 0.1
+	@$(ECHO) Linking $< to $@
 
 ca: clean fclean cl
-	@clear
-	@printf "Cleaned %s\n" $(FILE_CLEAN) $(CLEAN)
+	@sleep 0.1
+	@$(ECHO) $(CLEAN) $(FILE_CLEAN) $(LOGS) all cleaned
 
 clean:
 	@$(RM) $(CLEAN)
-	@clear
-	@printf "Cleaned: %s\n" $(CLEAN)
+	@sleep 0.1
+	@$(ECHO) $(CLEAN) cleaned
 
 fclean:
 	@$(RM) $(FILE_CLEAN)
-	@clear
-	@printf "Cleaned: %s\n" $(FILE_CLEAN)
+	@sleep 0.1
+	@$(ECHO) $(FILE_CLEAN) cleaned
 
 cl:
 	@$(RM) $(LOGS)
-	@clear
-	@printf "Cleaned %s\n" $(LOGS)
+	@sleep 0.1
+	@$(ECHO) $(LOGS) cleaned
 
 r:	re
+	@sleep 0.1
+	@$(ECHO) Cleaning and Re-Compiling Files
 
-re: cl fclean clean all
-	@clear
-	@printf "Cleaned and remade all files!\n"
+re: ca all
+	@sleep 0.1
+	@$(ECHO) Cleaning and Re-Compiling Files
+
+endif

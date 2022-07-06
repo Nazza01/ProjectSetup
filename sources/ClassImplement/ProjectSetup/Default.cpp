@@ -6,7 +6,7 @@
 /*   By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 23:06:53 by Nathanael         #+#    #+#             */
-/*   Updated: 2022/07/05 16:28:15 by Nathanael        ###   ########.fr       */
+/*   Updated: 2022/07/06 10:11:07 by Nathanael        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,9 @@ ProjectSetup::ProjectSetup(void)
 
 ProjectSetup::~ProjectSetup(void)
 {
-	this->LogToFile("ProjectSetup::ProjectSetup(void): Destructor called");
-	// this->LogToFile("ProjectSetup::ProjectSetup(void): Removing .temp/ directory");
-	// system("rmdir .temp/");
+	string	RemTempCmd	=	"rm -rf ";
+	this->LogToFile("ProjectSetup::~ProjectSetup(void): Destructor called");
+	this->LogToFile("ProjectSetup::~ProjectSetup(void): Removing .temp/ directory");
+	system(RemTempCmd.append(TEMPDIR).c_str());
 	// system("rm SetupLog_*.txt");
 }
