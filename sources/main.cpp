@@ -6,7 +6,7 @@
 /*   By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:34:40 by Nathanael         #+#    #+#             */
-/*   Updated: 2022/07/06 14:17:35 by Nathanael        ###   ########.fr       */
+/*   Updated: 2022/07/12 12:19:05 by Nathanael        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(void)
 {
 	ProjectSetup	project;
-
+	
 	if (project.PreSetup() == EXIT_FAILURE)		//	Pre Setup - temp dir
 		project.LogToFile("Pre-Setup: .temp already exists, continuing");
 
