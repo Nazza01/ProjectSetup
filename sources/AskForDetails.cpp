@@ -6,7 +6,7 @@
 /*   By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:49:41 by Nathanael         #+#    #+#             */
-/*   Updated: 2022/07/06 14:30:45 by Nathanael        ###   ########.fr       */
+/*   Updated: 2022/08/08 10:38:12 by Nathanael        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ bool	ProjectSetup::AskDir(void)
 
 	cout << path << endl;
 	cout << "What directory would you like this folder to be in?" << endl;
-	cout << "Please write the complete path (~/temp or ~/Desktop)" << endl;
+	cout << "Please write either one of:" << endl;
+	cout << "Relative path: (./temp, ../temp, ../Desktop or ../../Desktop)" << endl;
+	cout << "Absolute path: (~/temp, ~/Desktop or /home/$USER/development)" << endl;
 	cout << "Directory: ";
 	cin >> this->Directory;
 	while (this->Directory.empty())
@@ -52,8 +54,7 @@ bool	ProjectSetup::AskDir(void)
 		cout << "Directory cannot be empty: ";
 		cin >> this->Directory;
 	}
-	cout << "Final Directory is: " << this->Directory << endl;
-	cout << "Temporary project directory setup is" << this->Directory << endl;
+	
 	this->FinalDir = this->Directory;
 	dirCheck = 0;
 	// dirCheck = mkdir(path.append(this->Directory).c_str(), 0777);
